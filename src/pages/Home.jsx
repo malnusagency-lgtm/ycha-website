@@ -1,12 +1,25 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
+import ImpactCounter from '../components/ImpactCounter';
 
 const Home = () => {
+    const fadeInUp = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6 }
+    };
+
     return (
         <div className="home-page">
             <Hero />
 
-            <section className="section" style={{ backgroundColor: 'var(--color-white)' }}>
+            <motion.section
+                className="section"
+                style={{ backgroundColor: 'var(--color-white)' }}
+                {...fadeInUp}
+            >
                 <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Why We Act</h2>
                     <p style={{ fontSize: '1.1rem', color: 'var(--color-text-light)', marginBottom: '2rem' }}>
@@ -20,23 +33,40 @@ const Home = () => {
                         textAlign: 'left',
                         marginTop: '3rem'
                     }}>
-                        <div className="card">
-                            <h3 style={{ color: 'var(--color-secondary)' }}>Awareness</h3>
-                            <p>Educating peers and communities about the realities of climate science and sustainable living.</p>
-                        </div>
-                        <div className="card">
-                            <h3 style={{ color: 'var(--color-secondary)' }}>Action</h3>
-                            <p>Organizing cleanups, tree plantings, and local initiatives to make a tangible difference.</p>
-                        </div>
-                        <div className="card">
-                            <h3 style={{ color: 'var(--color-secondary)' }}>Advocacy</h3>
-                            <p>Speaking up for policy changes and sustainable practices at local and national levels.</p>
-                        </div>
+                        {[
+                            { title: "Awareness", text: "Educating peers and communities about the realities of climate science and sustainable living." },
+                            { title: "Action", text: "Organizing cleanups, tree plantings, and local initiatives to make a tangible difference." },
+                            { title: "Advocacy", text: "Speaking up for policy changes and sustainable practices at local and national levels." }
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                className="card"
+                                whileHover={{ y: -10, boxShadow: 'var(--shadow-lg)' }}
+                                style={{
+                                    padding: '2rem',
+                                    borderRadius: 'var(--radius-md)',
+                                    background: '#f8fafc',
+                                    transition: 'box-shadow 0.3s ease'
+                                }}
+                            >
+                                <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>{item.title}</h3>
+                                <p>{item.text}</p>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
-            <section className="section" style={{ backgroundColor: 'var(--color-secondary)', color: 'white' }}>
+            <ImpactCounter />
+
+            <motion.section
+                className="section"
+                style={{ backgroundColor: 'var(--color-secondary)', color: 'white' }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+            >
                 <div className="container" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '3rem' }}>
                     <div style={{ flex: 1 }}>
                         <h2 style={{ color: 'white', marginBottom: '1rem' }}>Join the Global Movement</h2>
@@ -44,25 +74,34 @@ const Home = () => {
                             You don't need to be an expert to be a hero. All it takes is the will to make a difference.
                             Join us today and be part of the solution.
                         </p>
-                        <a href="/join" className="btn" style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-primary)' }}>
+                        <motion.a
+                            href="/join"
+                            className="btn"
+                            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-primary)' }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
                             Get Involved
-                        </a>
+                        </motion.a>
                     </div>
                     <div style={{ flex: 1, minWidth: '300px' }}>
-                        {/* Placeholder for another image */}
-                        <div style={{
-                            backgroundColor: 'rgba(255,255,255,0.1)',
-                            height: '300px',
-                            borderRadius: 'var(--radius-lg)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            Image Placeholder
-                        </div>
+                        <motion.div
+                            style={{
+                                backgroundColor: 'rgba(255,255,255,0.1)',
+                                height: '350px',
+                                borderRadius: 'var(--radius-lg)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px dashed rgba(255,255,255,0.2)'
+                            }}
+                            whileHover={{ scale: 1.02 }}
+                        >
+                            <span style={{ opacity: 0.5 }}>Youth Action Image</span>
+                        </motion.div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </div>
     );
 };
