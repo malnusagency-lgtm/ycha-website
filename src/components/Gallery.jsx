@@ -169,19 +169,30 @@ const Gallery = () => {
                                         left: 0,
                                         width: '100%',
                                         height: '100%',
-                                        background: 'linear-gradient(rgba(0,0,0,0), rgba(15, 76, 58, 0.9))',
+                                        background: 'linear-gradient(rgba(0,0,0,0.1), rgba(15, 76, 58, 0.95))',
                                         display: 'flex',
                                         alignItems: 'flex-end',
                                         padding: '1.2rem',
                                         color: 'white'
                                     }}
+                                    className="gallery-overlay"
                                 >
                                     <div style={{ width: '100%' }}>
-                                        <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.8, color: 'white' }}>{img.category}</span>
-                                        <h4 style={{ color: 'white', margin: '0.1rem 0', fontSize: '1rem' }}>{img.title}</h4>
+                                        <span style={{
+                                            fontSize: '0.65rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px',
+                                            fontWeight: 800,
+                                            color: 'var(--color-accent)'
+                                        }}>
+                                            {img.category}
+                                        </span>
+                                        <h4 style={{ color: 'white', margin: '0.1rem 0', fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', fontWeight: 700 }}>
+                                            {img.title}
+                                        </h4>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
-                                            <span style={{ fontSize: '0.75rem', opacity: 0.8, color: 'white' }}>Details</span>
-                                            <Maximize2 size={14} color="white" />
+                                            <span style={{ fontSize: '0.7rem', opacity: 0.8, color: 'white' }}>View Details</span>
+                                            <Maximize2 size={14} color="var(--color-accent)" />
                                         </div>
                                     </div>
                                 </motion.div>
@@ -190,6 +201,18 @@ const Gallery = () => {
                     </AnimatePresence>
                 </motion.div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .gallery-overlay {
+                        opacity: 1 !important;
+                        background: linear-gradient(rgba(0,0,0,0), rgba(15, 76, 58, 0.85)) !important;
+                    }
+                    .gallery-overlay h4 {
+                        font-size: 0.9rem !important;
+                    }
+                }
+            `}</style>
+
 
             {/* Lightbox */}
             <AnimatePresence>

@@ -23,33 +23,37 @@ const Donate = () => {
     return (
         <motion.div
             className="donate-page"
-            style={{ paddingTop: '100px', minHeight: '100vh', backgroundColor: '#fcfdfc' }}
+            style={{
+                paddingTop: 'clamp(80px, 15vw, 120px)',
+                minHeight: '100vh',
+                backgroundColor: '#fcfdfc'
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <div className="container" style={{ maxWidth: '1200px', padding: '4rem 2rem' }}>
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div className="container" style={{ maxWidth: '1200px', padding: '2rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                     <motion.h1
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginBottom: '1rem' }}
+                        style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '1rem', fontWeight: 900 }}
                     >
                         Invest in <span style={{ color: 'var(--color-primary)' }}>African Youth</span>
                     </motion.h1>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--color-text-light)', maxWidth: '750px', margin: '0 auto' }}>
+                    <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', color: 'var(--color-text-light)', maxWidth: '750px', margin: '0 auto' }}>
                         Your support directly funds youth-led climate solutions across Kenya and East Africa.
                         Join us in building a sustainable future.
                     </p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
 
                     {/* Donation Flow */}
                     <motion.div
                         style={{
                             backgroundColor: 'white',
-                            padding: 'clamp(1.5rem, 4vw, 3rem)',
+                            padding: 'clamp(1.2rem, 5vw, 3rem)',
                             borderRadius: 'var(--radius-lg)',
                             boxShadow: 'var(--shadow-lg)',
                             border: '1px solid #eee'
@@ -59,7 +63,7 @@ const Donate = () => {
                         transition={{ delay: 0.2 }}
                     >
                         {/* Frequency Toggle */}
-                        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', background: '#f0f4f2', padding: '0.4rem', borderRadius: '2rem' }}>
+                        <div style={{ display: 'flex', gap: '0.8rem', marginBottom: '2rem', background: '#f0f4f2', padding: '0.4rem', borderRadius: '2rem' }}>
                             {['once', 'monthly'].map((f) => (
                                 <button
                                     key={f}
@@ -71,7 +75,7 @@ const Donate = () => {
                                         border: 'none',
                                         cursor: 'pointer',
                                         backgroundColor: frequency === f ? 'white' : 'transparent',
-                                        fontWeight: 700,
+                                        fontWeight: 800,
                                         color: frequency === f ? 'var(--color-primary)' : 'var(--color-text-light)',
                                         boxShadow: frequency === f ? '0 2px 10px rgba(0,0,0,0.05)' : 'none',
                                         transition: 'all 0.3s',
@@ -91,7 +95,7 @@ const Donate = () => {
                             }}
                             initial="hidden"
                             animate="show"
-                            style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '2rem' }}
+                            style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.8rem', marginBottom: '2rem' }}
                         >
                             {tiers.map((tier) => (
                                 <motion.button
@@ -101,7 +105,7 @@ const Donate = () => {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => setAmount(tier.value)}
                                     style={{
-                                        padding: '1.2rem',
+                                        padding: '1.2rem 0.5rem',
                                         borderRadius: 'var(--radius-md)',
                                         border: amount === tier.value ? '2px solid var(--color-primary)' : '1px solid #ddd',
                                         backgroundColor: amount === tier.value ? 'rgba(15, 76, 58, 0.05)' : 'white',
@@ -113,7 +117,7 @@ const Donate = () => {
                                         transition: 'all 0.2s'
                                     }}
                                 >
-                                    <span style={{ fontSize: '1.2rem', fontWeight: 800, color: amount === tier.value ? 'var(--color-primary)' : 'var(--color-text)' }}>
+                                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: amount === tier.value ? 'var(--color-primary)' : 'var(--color-text)' }}>
                                         {tier.label}
                                     </span>
                                 </motion.button>
@@ -140,27 +144,28 @@ const Donate = () => {
                         </div>
 
                         {/* Payment Methods */}
-                        <h4 style={{ marginBottom: '1rem' }}>Select Payment Method</h4>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.8rem', marginBottom: '2.5rem' }}>
+                        <h4 style={{ marginBottom: '1.2rem', fontWeight: 800 }}>Select Payment Method</h4>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))', gap: '0.6rem', marginBottom: '2.5rem' }}>
                             {paymentMethods.map((m) => (
                                 <button
                                     key={m.id}
                                     onClick={() => setMethod(m.id)}
                                     style={{
-                                        padding: '1rem 0.5rem',
+                                        padding: '1.2rem 0.4rem',
                                         borderRadius: 'var(--radius-md)',
                                         border: method === m.id ? '2px solid var(--color-primary)' : '1px solid #eee',
                                         backgroundColor: method === m.id ? 'rgba(15, 76, 58, 0.05)' : 'white',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        gap: '0.5rem',
+                                        gap: '0.6rem',
                                         fontSize: '0.75rem',
-                                        fontWeight: 700,
-                                        cursor: 'pointer'
+                                        fontWeight: 800,
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s'
                                     }}
                                 >
-                                    <m.icon size={20} color={method === m.id ? 'var(--color-primary)' : '#888'} />
+                                    <m.icon size={22} color={method === m.id ? 'var(--color-primary)' : '#94a3b8'} />
                                     <span>{m.name}</span>
                                 </button>
                             ))}
@@ -175,15 +180,15 @@ const Donate = () => {
                                     exit={{ opacity: 0, y: -10 }}
                                     style={{ backgroundColor: '#f1f8f5', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '2.5rem' }}
                                 >
-                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.5rem' }}>How to pay with M-Pesa:</h5>
-                                    <p style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.8rem', fontWeight: 800 }}>How to pay with M-Pesa:</h5>
+                                    <p style={{ fontSize: '0.95rem', marginBottom: '1.2rem', lineHeight: 1.6 }}>
                                         1. Go to M-Pesa Menu <br />
-                                        2. Lipa na M-Pesa \u003e Paybill <br />
+                                        2. Lipa na M-Pesa → Paybill <br />
                                         3. Business No: <strong>4000000</strong> <br />
                                         4. Account: <strong>YHCA</strong> <br />
                                         5. Enter your donation amount
                                     </p>
-                                    <button className="btn btn-primary" style={{ width: '100%' }}>Send Instructions to Phone</button>
+                                    <button className="btn btn-primary" style={{ width: '100%', fontWeight: 800 }}>Send Instructions to Phone</button>
                                 </motion.div>
                             )}
 
@@ -195,19 +200,19 @@ const Donate = () => {
                                     exit={{ opacity: 0, y: -10 }}
                                     style={{ backgroundColor: '#f1f8f5', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '2.5rem' }}
                                 >
-                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.5rem' }}>Bank Transfer Details:</h5>
-                                    <p style={{ fontSize: '0.9rem' }}>
+                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.8rem', fontWeight: 800 }}>Bank Transfer Details:</h5>
+                                    <p style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                                         <strong>Bank:</strong> Kenya Commercial Bank (KCB)<br />
                                         <strong>A/C Name:</strong> Young Heroes Climate Advocates<br />
                                         <strong>A/C No:</strong> 1234567890<br />
-                                        <strong>Swift:</strong> KCBLKENA
+                                        <strong>Swift Code:</strong> KCBLKENA
                                     </p>
                                 </motion.div>
                             )}
 
                             {method === 'card' && (
                                 <motion.div key="card" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                                    <button className="btn btn-primary" style={{ width: '100%', padding: '1.2rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                                    <button className="btn btn-primary" style={{ width: '100%', padding: '1.2rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', fontWeight: 800 }}>
                                         <CreditCard size={20} />
                                         Pay with Card / PayPal
                                     </button>
@@ -215,11 +220,12 @@ const Donate = () => {
                             )}
                         </AnimatePresence>
 
-                        <p style={{ textAlign: 'center', fontSize: '0.8rem', opacity: 0.6 }}>
-                            A receipt will be sent to your email after verification.
-                            Registration No: [REDACTED/KENYA]
+                        <p style={{ textAlign: 'center', fontSize: '0.8rem', opacity: 0.6, lineHeight: 1.5 }}>
+                            A legal receipt will be sent to your email after verification. <br />
+                            YHCA NGO Reg No: [PENDING/KE/2026]
                         </p>
                     </motion.div>
+
 
                     {/* Impact & Transparency */}
                     <motion.div

@@ -59,16 +59,16 @@ const Programs = () => {
                     <motion.h1
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        style={{ fontSize: '3.5rem', marginTop: '1rem' }}
+                        style={{ fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', marginTop: '1rem', fontWeight: 900 }}
                     >
                         Programs & <span style={{ color: 'var(--color-primary)' }}>Impact</span>
                     </motion.h1>
-                    <p style={{ maxWidth: '700px', margin: '2rem auto', fontSize: '1.2rem', color: 'var(--color-text-light)' }}>
+                    <p style={{ maxWidth: '700px', margin: '2rem auto', fontSize: 'clamp(1rem, 3vw, 1.2rem)', color: 'var(--color-text-light)', lineHeight: 1.6 }}>
                         We translate passion into measurable progress through standardized sustainability frameworks and community-led execution across the continent.
                     </p>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                     {programs.map((prog, i) => (
                         <motion.div
                             key={i}
@@ -82,37 +82,37 @@ const Programs = () => {
                                 gap: 'clamp(1rem, 5vw, 3rem)',
                                 alignItems: 'center',
                                 backgroundColor: 'white',
-                                padding: 'clamp(1.5rem, 5vw, 3rem)',
+                                padding: 'clamp(1.2rem, 5vw, 3rem)',
                                 borderRadius: 'var(--radius-lg)',
                                 boxShadow: 'var(--shadow-md)',
                                 flexDirection: i % 2 === 0 ? 'row' : 'row-reverse'
                             }}
                         >
 
-                            <div style={{ flex: 1, minWidth: '300px' }}>
+                            <div style={{ flex: 1, minWidth: '280px' }}>
                                 <div style={{
                                     display: 'inline-flex',
-                                    padding: '1rem',
+                                    padding: '0.8rem',
                                     backgroundColor: `${prog.color}15`,
                                     color: prog.color,
                                     borderRadius: '1rem',
-                                    marginBottom: '1.5rem'
+                                    marginBottom: '1.2rem'
                                 }}>
-                                    <prog.icon size={32} />
+                                    <prog.icon size={28} />
                                 </div>
-                                <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem' }}>{prog.title}</h2>
-                                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem', color: 'var(--color-text-light)' }}>
+                                <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', marginBottom: '1.2rem', fontWeight: 800 }}>{prog.title}</h2>
+                                <p style={{ fontSize: '1rem', lineHeight: '1.7', marginBottom: '1.8rem', color: 'var(--color-text-light)' }}>
                                     {prog.description}
                                 </p>
 
-                                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+                                <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', marginBottom: '1.8rem' }}>
                                     {prog.sdgs.map((sdg, s) => (
                                         <span key={s} style={{
-                                            padding: '0.3rem 0.8rem',
+                                            padding: '0.3rem 0.6rem',
                                             backgroundColor: '#f3f4f6',
                                             borderRadius: '0.4rem',
-                                            fontSize: '0.85rem',
-                                            fontWeight: 600,
+                                            fontSize: '0.75rem',
+                                            fontWeight: 700,
                                             color: 'var(--color-secondary)'
                                         }}>
                                             #{sdg}
@@ -124,22 +124,22 @@ const Programs = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '0.8rem',
-                                    padding: '1rem 1.5rem',
+                                    padding: '1rem',
                                     backgroundColor: '#f0fdf4',
                                     borderRadius: '0.8rem',
                                     border: '1px solid #dcfce7'
                                 }}>
-                                    <CheckCircle size={20} color="#10B981" />
-                                    <span style={{ fontWeight: 700, color: '#064e3b' }}>{prog.impact}</span>
+                                    <CheckCircle size={18} color="#10B981" />
+                                    <span style={{ fontWeight: 800, color: '#064e3b', fontSize: '0.9rem' }}>{prog.impact}</span>
                                 </div>
                             </div>
-                            <div style={{ flex: 1, minWidth: '300px' }}>
+                            <div style={{ flex: 1, minWidth: '280px' }}>
                                 <img
                                     src={prog.image}
                                     alt={prog.title}
                                     style={{
                                         width: '100%',
-                                        height: '400px',
+                                        height: 'clamp(250px, 40vh, 400px)',
                                         objectFit: 'cover',
                                         borderRadius: 'var(--radius-md)',
                                         boxShadow: 'var(--shadow-lg)'
@@ -147,6 +147,7 @@ const Programs = () => {
                                 />
                             </div>
                         </motion.div>
+
                     ))}
                 </div>
             </div>

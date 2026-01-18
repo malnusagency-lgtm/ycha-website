@@ -38,41 +38,39 @@ const Navbar = () => {
                     className="logo"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    whileHover={{ scale: 1.02 }}
                 >
                     <Link to="/" style={{
                         textDecoration: 'none',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.8rem'
+                        gap: 'clamp(0.4rem, 2vw, 0.8rem)'
                     }}>
                         <img
                             src={logoImg}
                             alt="Young Heroes Logo"
                             style={{
-                                height: scrolled ? '50px' : '70px',
+                                height: scrolled ? '40px' : 'clamp(45px, 12vw, 60px)',
                                 width: 'auto',
                                 borderRadius: 'var(--radius-sm)',
-                                transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                boxShadow: 'var(--shadow-sm)'
+                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                         />
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', whiteSpace: 'nowrap' }}>
                             <span style={{
-                                fontSize: scrolled ? '1.1rem' : '1.3rem',
+                                fontSize: scrolled ? '1rem' : 'clamp(1.1rem, 4vw, 1.35rem)',
                                 fontWeight: '800',
                                 color: 'var(--color-primary)',
-                                lineHeight: 1,
+                                lineHeight: 1.1,
                                 transition: 'font-size 0.3s ease'
                             }}>
                                 Young Heroes
                             </span>
                             <span style={{
-                                fontSize: scrolled ? '0.7rem' : '0.8rem',
-                                fontWeight: '600',
+                                fontSize: scrolled ? '0.65rem' : 'clamp(0.7rem, 2.5vw, 0.8rem)',
+                                fontWeight: '700',
                                 color: 'var(--color-primary)',
                                 textTransform: 'uppercase',
-                                letterSpacing: '1px',
+                                letterSpacing: '0.5px',
                                 opacity: 0.8,
                                 transition: 'font-size 0.3s ease'
                             }}>
@@ -84,7 +82,7 @@ const Navbar = () => {
 
 
                 {/* Mobile Toggle */}
-                <div className="mobile-toggle" onClick={toggleMenu} style={{ display: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}>
+                <div className="mobile-toggle" onClick={toggleMenu} style={{ cursor: 'pointer', color: 'var(--color-primary)', display: 'none' }}>
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </div>
 
@@ -93,36 +91,25 @@ const Navbar = () => {
                     gap: '2rem',
                     alignItems: 'center'
                 }}>
-                    <NavLink to="/" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
-                        fontWeight: 600,
-                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
-                    })}>Home</NavLink>
-
-                    <NavLink to="/about" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
-                        fontWeight: 600,
-                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
-                    })}>About Us</NavLink>
-
-                    <NavLink to="/programs" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
-                        fontWeight: 600,
-                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
-                    })}>Programs</NavLink>
-
-                    <NavLink to="/mission" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
-                        fontWeight: 600,
-                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
-                    })}>Our Mission</NavLink>
-
-                    <Link to="/donate" onClick={() => setIsOpen(false)} style={{
-                        color: 'var(--color-accent)',
-                        fontWeight: 700,
-                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                        padding: '0.4rem 1rem',
-                        borderRadius: '2rem'
-                    }}>Donate</Link>
+                    {['Home', 'About Us', 'Programs', 'Mission', 'Donate'].map((item) => (
+                        <NavLink
+                            key={item}
+                            to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '')}`}
+                            onClick={() => setIsOpen(false)}
+                            style={({ isActive }) => ({
+                                fontWeight: 700,
+                                fontSize: '0.95rem',
+                                color: isActive ? 'var(--color-accent)' : 'var(--color-primary)',
+                                textDecoration: 'none',
+                                transition: 'color 0.2s'
+                            })}
+                        >
+                            {item}
+                        </NavLink>
+                    ))}
 
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Link to="/join" className="btn btn-primary" onClick={() => setIsOpen(false)} style={{ padding: '0.6rem 1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <Link to="/join" className="btn btn-primary" onClick={() => setIsOpen(false)} style={{ padding: '0.65rem 1.5rem', fontWeight: 800 }}>
                             Join Now
                         </Link>
                     </motion.div>
@@ -136,32 +123,36 @@ const Navbar = () => {
             position: fixed;
             top: 0;
             right: 0;
-            width: 85%;
+            width: 100%;
             height: 100vh;
             background: white;
-            padding: 6rem 2rem;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-            text-align: left;
+            padding: 7rem 2rem;
             z-index: 2000;
+            text-align: center;
           }
           .nav-links.active {
             display: flex !important;
-            gap: 2rem;
+            gap: 1.5rem;
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
           }
           .mobile-toggle {
             display: block !important;
             z-index: 2001;
           }
           .nav-links a {
-            font-size: 1.5rem;
+            font-size: 1.8rem !important;
             width: 100%;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f5f5f5;
           }
           .nav-links .btn {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            justify-content: center;
+            font-size: 1.4rem !important;
+            margin-top: 2rem;
+            width: 80%;
           }
         }
 

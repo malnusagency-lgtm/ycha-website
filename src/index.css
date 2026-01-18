@@ -39,6 +39,11 @@
   --transition-normal: 0.3s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: clamp(70px, 12vw, 100px);
+}
+
 * {
   margin: 0;
   padding: 0;
