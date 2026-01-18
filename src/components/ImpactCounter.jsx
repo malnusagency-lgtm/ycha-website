@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { Trees, Users, Globe } from 'lucide-react';
 
 const Counter = ({ value, label, icon: Icon, suffix = "", color = "var(--color-primary)" }) => {
     const ref = useRef(null);
@@ -38,8 +39,6 @@ const Counter = ({ value, label, icon: Icon, suffix = "", color = "var(--color-p
 };
 
 const ImpactCounter = () => {
-    const { Trees, Users, Globe } = require('lucide-react');
-
     return (
         <section className="section" style={{ backgroundColor: 'var(--color-bg)' }}>
             <div className="container">
