@@ -91,10 +91,18 @@ const Navbar = () => {
                     gap: '2rem',
                     alignItems: 'center'
                 }}>
-                    {['Home', 'About Us', 'Programs', 'Mission', 'Donate'].map((item) => (
+                    {[
+                        { name: 'Home', path: '/' },
+                        { name: 'About', path: '/about' },
+                        { name: 'Programs', path: '/programs' },
+                        { name: 'Events', path: '/events' },
+                        { name: 'Blog', path: '/blog' },
+                        { name: 'Mission', path: '/mission' },
+                        { name: 'Donate', path: '/donate' }
+                    ].map((item) => (
                         <NavLink
-                            key={item}
-                            to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '')}`}
+                            key={item.name}
+                            to={item.path}
                             onClick={() => setIsOpen(false)}
                             style={({ isActive }) => ({
                                 fontWeight: 700,
@@ -104,7 +112,7 @@ const Navbar = () => {
                                 transition: 'color 0.2s'
                             })}
                         >
-                            {item}
+                            {item.name}
                         </NavLink>
                     ))}
 

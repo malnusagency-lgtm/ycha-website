@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Globe, Trees, Users, CreditCard, DollarSign, Shield, Smartphone, Landmark, Check } from 'lucide-react';
+import { Heart, Globe, Trees, Users, CreditCard, Shield, Smartphone, Landmark, Check, CheckCircle } from 'lucide-react';
 
 const Donate = () => {
     const [amount, setAmount] = useState('5000');
-    const [frequency, setFrequency] = useState('once');
     const [method, setMethod] = useState('mpesa');
 
-    const tiers = [
-        { value: '1000', label: 'KES 1,000', impact: 'Plants 10 seedlings and supports eco-literacy for one school.', icon: Trees },
-        { value: '5000', label: 'KES 5,000', impact: 'Equips a youth chapter with conservation tools and gear.', icon: Globe },
-        { value: '10000', label: 'KES 10k', impact: 'Supports a week-long regional advocacy training summit.', icon: Users },
-        { value: '25000', label: 'KES 25k', impact: 'Full sponsorship for a community-led reforestation site.', icon: Heart }
+    const donationTiers = [
+        { label: "Supporter", amount: "KES 1,000", impact: "Plants 10 indigenous seedlings and supports a school eco-literacy workshop.", icon: Trees },
+        { label: "Advocate", amount: "KES 5,000", impact: "Equips a regional youth chapter with conservation tools and scientific monitoring gear.", icon: Globe },
+        { label: "Hero", amount: "KES 25,000", amountVal: 25000, impact: "Full sponsorship for a community-led reforestation site, including nursery setup.", icon: Heart }
     ];
 
     const paymentMethods = [
-        { id: 'mpesa', name: 'M-Pesa (Mobile)', icon: Smartphone },
+        { id: 'mpesa', name: 'M-Pesa Paybill', icon: Smartphone },
         { id: 'bank', name: 'Bank Transfer', icon: Landmark },
-        { id: 'card', name: 'Card / Global', icon: CreditCard }
+        { id: 'card', name: 'Global Card', icon: CreditCard }
     ];
 
     return (
@@ -32,246 +30,180 @@ const Donate = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <div className="container" style={{ maxWidth: '1200px', padding: '2rem' }}>
-                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div className="container" style={{ maxWidth: '1200px', padding: 'clamp(1rem, 5vw, 2rem)' }}>
+                {/* Hero Header */}
+                <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 10vw, 5rem)' }}>
+                    <motion.span style={{ color: 'var(--color-primary)', fontWeight: 800, letterSpacing: '4px', textTransform: 'uppercase', fontSize: '0.9rem', display: 'block', marginBottom: '1rem' }}>
+                        Join the Action
+                    </motion.span>
                     <motion.h1
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '1rem', fontWeight: 900 }}
+                        style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', marginBottom: '1.5rem', fontWeight: 900, lineHeight: 1.1 }}
                     >
-                        Invest in <span style={{ color: 'var(--color-primary)' }}>African Youth</span>
+                        Invest in <br /><span style={{ color: 'var(--color-primary)' }}>African Climate Resilience</span>
                     </motion.h1>
-                    <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', color: 'var(--color-text-light)', maxWidth: '750px', margin: '0 auto' }}>
-                        Your support directly funds youth-led climate solutions across Kenya and East Africa.
-                        Join us in building a sustainable future.
+                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-light)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7 }}>
+                        Your contribution directly funds youth-led conservation and policy advocacy across Kenya.
+                        We ensure every shilling translates into tangible, measurable climate impact.
                     </p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-
-                    {/* Donation Flow */}
-                    <motion.div
-                        style={{
-                            backgroundColor: 'white',
-                            padding: 'clamp(1.2rem, 5vw, 3rem)',
-                            borderRadius: 'var(--radius-lg)',
-                            boxShadow: 'var(--shadow-lg)',
-                            border: '1px solid #eee'
-                        }}
-                        initial={{ x: -30, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        {/* Frequency Toggle */}
-                        <div style={{ display: 'flex', gap: '0.8rem', marginBottom: '2rem', background: '#f0f4f2', padding: '0.4rem', borderRadius: '2rem' }}>
-                            {['once', 'monthly'].map((f) => (
-                                <button
-                                    key={f}
-                                    onClick={() => setFrequency(f)}
-                                    style={{
-                                        flex: 1,
-                                        padding: '0.8rem',
-                                        borderRadius: '2rem',
-                                        border: 'none',
-                                        cursor: 'pointer',
-                                        backgroundColor: frequency === f ? 'white' : 'transparent',
-                                        fontWeight: 800,
-                                        color: frequency === f ? 'var(--color-primary)' : 'var(--color-text-light)',
-                                        boxShadow: frequency === f ? '0 2px 10px rgba(0,0,0,0.05)' : 'none',
-                                        transition: 'all 0.3s',
-                                        textTransform: 'capitalize'
-                                    }}
-                                >
-                                    {f === 'once' ? 'One-time' : 'Monthly'}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Amount Selection */}
+                {/* Donation Tiers Grid */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: '2rem',
+                    marginBottom: 'clamp(4rem, 10vw, 6rem)'
+                }}>
+                    {donationTiers.map((tier, i) => (
                         <motion.div
-                            variants={{
-                                hidden: { opacity: 0 },
-                                show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                            key={i}
+                            initial={{ y: 20, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)' }}
+                            style={{
+                                backgroundColor: 'white',
+                                padding: '3rem 2.5rem',
+                                borderRadius: 'var(--radius-lg)',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
+                                border: '1px solid #f1f5f9',
+                                textAlign: 'center',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center'
                             }}
-                            initial="hidden"
-                            animate="show"
-                            style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.8rem', marginBottom: '2rem' }}
                         >
-                            {tiers.map((tier) => (
-                                <motion.button
-                                    key={tier.value}
-                                    variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    onClick={() => setAmount(tier.value)}
-                                    style={{
-                                        padding: '1.2rem 0.5rem',
-                                        borderRadius: 'var(--radius-md)',
-                                        border: amount === tier.value ? '2px solid var(--color-primary)' : '1px solid #ddd',
-                                        backgroundColor: amount === tier.value ? 'rgba(15, 76, 58, 0.05)' : 'white',
-                                        cursor: 'pointer',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        gap: '0.3rem',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: amount === tier.value ? 'var(--color-primary)' : 'var(--color-text)' }}>
-                                        {tier.label}
-                                    </span>
-                                </motion.button>
-                            ))}
+                            <div style={{ background: '#f8fafc', padding: '1.2rem', borderRadius: '50%', marginBottom: '1.5rem' }}>
+                                <tier.icon size={32} color="var(--color-primary)" />
+                            </div>
+                            <div style={{ color: 'var(--color-secondary)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '1px' }}>{tier.label}</div>
+                            <div style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--color-text)', marginBottom: '1.5rem' }}>{tier.amount}</div>
+                            <p style={{ color: 'var(--color-text-light)', marginBottom: '2.5rem', fontSize: '1rem', lineHeight: 1.6 }}>{tier.impact}</p>
+                            <button className="btn btn-primary" style={{ width: '100%', padding: '1.2rem', fontWeight: 800 }}>Select Impact</button>
                         </motion.div>
+                    ))}
+                </div>
 
-
-                        <div style={{ position: 'relative', marginBottom: '2.5rem' }}>
-                            <span style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.6, fontWeight: 700 }}>KES</span>
-                            <input
-                                type="number"
-                                placeholder="Other amount"
-                                value={amount === tiers.find(t => t.value === amount)?.value ? '' : amount}
-                                onChange={(e) => setAmount(e.target.value)}
-                                style={{
-                                    width: '100%',
-                                    padding: '1rem 1rem 1rem 3.5rem',
-                                    borderRadius: 'var(--radius-md)',
-                                    border: '1px solid #ddd',
-                                    fontSize: '1.1rem',
-                                    fontWeight: 600
-                                }}
-                            />
-                        </div>
-
-                        {/* Payment Methods */}
-                        <h4 style={{ marginBottom: '1.2rem', fontWeight: 800 }}>Select Payment Method</h4>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(90px, 1fr))', gap: '0.6rem', marginBottom: '2.5rem' }}>
+                {/* Unified Payment Section */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', marginBottom: '6rem' }}>
+                    {/* Method Selector */}
+                    <div>
+                        <h2 style={{ fontSize: '2rem', marginBottom: '2rem', fontWeight: 900 }}>Secure Payment Methods</h2>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {paymentMethods.map((m) => (
                                 <button
                                     key={m.id}
                                     onClick={() => setMethod(m.id)}
                                     style={{
-                                        padding: '1.2rem 0.4rem',
-                                        borderRadius: 'var(--radius-md)',
-                                        border: method === m.id ? '2px solid var(--color-primary)' : '1px solid #eee',
-                                        backgroundColor: method === m.id ? 'rgba(15, 76, 58, 0.05)' : 'white',
                                         display: 'flex',
-                                        flexDirection: 'column',
                                         alignItems: 'center',
-                                        gap: '0.6rem',
-                                        fontSize: '0.75rem',
-                                        fontWeight: 800,
+                                        gap: '1.5rem',
+                                        padding: '1.5rem',
+                                        borderRadius: 'var(--radius-md)',
+                                        border: method === m.id ? '2px solid var(--color-primary)' : '1px solid #e2e8f0',
+                                        backgroundColor: method === m.id ? 'rgba(15, 76, 58, 0.03)' : 'white',
                                         cursor: 'pointer',
-                                        transition: 'all 0.2s'
+                                        transition: 'all 0.2s',
+                                        textAlign: 'left'
                                     }}
                                 >
-                                    <m.icon size={22} color={method === m.id ? 'var(--color-primary)' : '#94a3b8'} />
-                                    <span>{m.name}</span>
+                                    <div style={{
+                                        background: method === m.id ? 'var(--color-primary)' : '#f1f5f9',
+                                        padding: '0.8rem',
+                                        borderRadius: '12px'
+                                    }}>
+                                        <m.icon size={24} color={method === m.id ? 'white' : '#94a3b8'} />
+                                    </div>
+                                    <span style={{ fontSize: '1.1rem', fontWeight: 800, color: method === m.id ? 'var(--color-primary)' : 'var(--color-text)' }}>{m.name}</span>
                                 </button>
                             ))}
                         </div>
+                    </div>
 
+                    {/* Instructions Card */}
+                    <div style={{ backgroundColor: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: '0 20px 40px rgba(0,0,0,0.03)', border: '1px solid #f1f5f9' }}>
                         <AnimatePresence mode="wait">
-                            {method === 'mpesa' && (
-                                <motion.div
-                                    key="mpesa"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    style={{ backgroundColor: '#f1f8f5', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '2.5rem' }}
-                                >
-                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.8rem', fontWeight: 800 }}>How to pay with M-Pesa:</h5>
-                                    <p style={{ fontSize: '0.95rem', marginBottom: '1.2rem', lineHeight: 1.6 }}>
-                                        1. Go to M-Pesa Menu <br />
-                                        2. Lipa na M-Pesa → Paybill <br />
-                                        3. Business No: <strong>4000000</strong> <br />
-                                        4. Account: <strong>YHCA</strong> <br />
-                                        5. Enter your donation amount
-                                    </p>
-                                    <button className="btn btn-primary" style={{ width: '100%', fontWeight: 800 }}>Send Instructions to Phone</button>
-                                </motion.div>
-                            )}
+                            <motion.div
+                                key={method}
+                                initial={{ opacity: 0, x: 10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -10 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                                    <Shield color="var(--color-primary)" size={32} />
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 900 }}>Payment Details</h3>
+                                </div>
 
-                            {method === 'bank' && (
-                                <motion.div
-                                    key="bank"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    style={{ backgroundColor: '#f1f8f5', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '2.5rem' }}
-                                >
-                                    <h5 style={{ color: '#1e3a34', marginBottom: '0.8rem', fontWeight: 800 }}>Bank Transfer Details:</h5>
-                                    <p style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
-                                        <strong>Bank:</strong> Kenya Commercial Bank (KCB)<br />
-                                        <strong>A/C Name:</strong> Young Heroes Climate Advocates<br />
-                                        <strong>A/C No:</strong> 1234567890<br />
-                                        <strong>Swift Code:</strong> KCBLKENA
-                                    </p>
-                                </motion.div>
-                            )}
+                                {method === 'mpesa' && (
+                                    <div style={{ color: 'var(--color-text)', fontSize: '1.1rem' }}>
+                                        <div style={{ marginBottom: '1.5rem', background: '#f8fafc', padding: '1.5rem', borderRadius: 'var(--radius-md)' }}>
+                                            <p style={{ margin: '0.5rem 0' }}>Go to Lipa na M-Pesa → <strong>Paybill</strong></p>
+                                            <p style={{ margin: '0.5rem 0' }}>Business Number: <strong style={{ color: 'var(--color-primary)', fontSize: '1.3rem' }}>247247</strong></p>
+                                            <p style={{ margin: '0.5rem 0' }}>Account Number: <strong style={{ color: 'var(--color-primary)', fontSize: '1.3rem' }}>0725514013</strong></p>
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: '#64748b' }}>
+                                            <CheckCircle size={16} color="#10B981" /> Official YHCA Agent Account
+                                        </div>
+                                    </div>
+                                )}
 
-                            {method === 'card' && (
-                                <motion.div key="card" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                                    <button className="btn btn-primary" style={{ width: '100%', padding: '1.2rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', fontWeight: 800 }}>
-                                        <CreditCard size={20} />
-                                        Pay with Card / PayPal
-                                    </button>
-                                </motion.div>
-                            )}
+                                {method === 'bank' && (
+                                    <div style={{ color: 'var(--color-text)', fontSize: '1.1rem', lineHeight: '1.8' }}>
+                                        <p><strong>Bank:</strong> Equity Bank Kenya</p>
+                                        <p><strong>Account Name:</strong> Young Heroes Climate Advocates</p>
+                                        <p><strong>Account Number:</strong> 0710283084042</p>
+                                        <p><strong>Branch:</strong> Ruiru Branch</p>
+                                        <p><strong>Swift Code:</strong> EQTYKENA</p>
+                                    </div>
+                                )}
+
+                                {method === 'card' && (
+                                    <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+                                        <p style={{ color: 'var(--color-text-light)', marginBottom: '2rem' }}>We use Flutterwave / Stripe for secure global card processing.</p>
+                                        <button className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', margin: '0 auto', padding: '1rem 2.5rem' }}>
+                                            <CreditCard size={20} /> Open Secure Portal
+                                        </button>
+                                    </div>
+                                )}
+                            </motion.div>
                         </AnimatePresence>
+                    </div>
+                </div>
 
-                        <p style={{ textAlign: 'center', fontSize: '0.8rem', opacity: 0.6, lineHeight: 1.5 }}>
-                            A legal receipt will be sent to your email after verification. <br />
-                            YHCA NGO Reg No: [PENDING/KE/2026]
+                {/* Transparency Hardening */}
+                <div style={{
+                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: 'clamp(3rem, 10vw, 6rem) 2rem',
+                    color: 'white',
+                    textAlign: 'center',
+                    position: 'relative',
+                    overflow: 'hidden'
+                }}>
+                    <div style={{ position: 'relative', zIndex: 1, maxWidth: '800px', margin: '0 auto' }}>
+                        <h2 style={{ color: 'white', marginBottom: '2rem', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: 900 }}>Fiscal Transparency</h2>
+                        <p style={{ fontSize: '1.2rem', opacity: 0.9, lineHeight: 1.8, marginBottom: '4rem' }}>
+                            We are committed to the highest standards of accountability. Every donation is tracked and reported,
+                            with 100% of public gifts going directly to program implementation in rural and urban youth centers.
                         </p>
-                    </motion.div>
 
-
-                    {/* Impact & Transparency */}
-                    <motion.div
-                        style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
-                        initial={{ x: 30, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                    >
-                        <div style={{ padding: '2.5rem', backgroundColor: 'var(--color-primary)', color: 'white', borderRadius: 'var(--radius-lg)' }}>
-                            <h3 style={{ color: 'white', marginBottom: '1.5rem' }}>Your Impact</h3>
-                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-                                <div style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '50%', flexShrink: 0 }}>
-                                    {React.createElement(tiers.find(t => t.value === amount)?.icon || Heart, { size: 32 })}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center' }}>
+                            {[
+                                { label: "Programs", value: "85%" },
+                                { label: "Operations", value: "10%" },
+                                { label: "Resource Prep", value: "5%" }
+                            ].map((stat, s) => (
+                                <div key={s}>
+                                    <div style={{ fontSize: '3.5rem', fontWeight: 900, color: 'var(--color-accent)', lineHeight: 1 }}>{stat.value}</div>
+                                    <div style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', opacity: 0.7, marginTop: '0.5rem' }}>{stat.label}</div>
                                 </div>
-                                <p style={{ fontSize: '1.1rem', lineHeight: '1.7' }}>
-                                    {tiers.find(t => t.value === amount)?.impact || "Your general donation powers our strategic outreach and youth empowerment chapters in rural Kenya."}
-                                </p>
-                            </div>
+                            ))}
                         </div>
-
-                        <div style={{ padding: '2rem', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 'var(--radius-lg)' }}>
-                            <h4 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <Shield size={20} color="var(--color-primary)" />
-                                Donor Confidence
-                            </h4>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                                We prioritize fiscal discipline. <strong>85%</strong> of donations go directly to the ground for field work, with only 15% used for administrative scaling.
-                            </p>
-                            <div style={{ display: 'flex', gap: '1rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700 }}>
-                                    <Check size={14} color="#10B981" /> Audited Reports
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700 }}>
-                                    <Check size={14} color="#10B981" /> 100% Secure
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style={{ padding: '2rem', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: 'var(--radius-lg)' }}>
-                            <h4 style={{ marginBottom: '1.5rem' }}>International Donors</h4>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', marginBottom: '1rem' }}>
-                                For wire transfers larger than $1,000, please contact our partnership team directly to avoid processing fees.
-                            </p>
-                            <a href="mailto:partners@ycha-africa.org" style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline' }}>partners@ycha-africa.org</a>
-                        </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </motion.div>

@@ -10,6 +10,8 @@ import Mission from './pages/Mission';
 import Join from './pages/Join';
 import Donate from './pages/Donate';
 import Programs from './pages/Programs';
+import Blog from './pages/Blog';
+import Events from './pages/Events';
 import './App.css';
 
 const ScrollToTop = () => {
@@ -51,6 +53,8 @@ function App() {
               <Route path="/join" element={<Join />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/programs" element={<Programs />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/events" element={<Events />} />
             </Routes>
           </AnimatePresence>
         </main>
