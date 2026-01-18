@@ -30,16 +30,31 @@ const Footer = () => {
                             <li style={{ marginBottom: '0.5rem' }}><a href="/join">Join the Movement</a></li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 style={{ marginBottom: '1rem', color: 'white' }}>Contact Us</h4>
-                        <p style={{ opacity: 0.8, marginBottom: '0.5rem' }}>info@youngheroes.org</p>
-                        <p style={{ opacity: 0.8 }}>+1 (555) 123-4567</p>
+                    <div style={{ flex: 1, minWidth: '250px' }}>
+                        <h4 style={{ color: 'white', marginBottom: '1.5rem' }}>Contact Us</h4>
+                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                            <li style={{ marginBottom: '1rem', opacity: 0.8, display: 'flex', gap: '0.8rem' }}>
+                                <Globe size={18} color="var(--color-accent)" />
+                                <span>Main Office: Regional Youth Hub, Nairobi, Kenya</span>
+                            </li>
+                            <li style={{ marginBottom: '1rem', opacity: 0.8, display: 'flex', gap: '0.8rem' }}>
+                                <Users size={18} color="var(--color-accent)" />
+                                <span>info@ycha-africa.org</span>
+                            </li>
+                        </ul>
                         <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem' }}>
                             {/* Social Icons Placeholders */}
                             <span>FB</span>
                             <span>IG</span>
                             <span>TW</span>
                         </div>
+                    </div>
+                    <div style={{ flex: 1, minWidth: '200px' }}>
+                        <h4 style={{ color: 'white', marginBottom: '1.5rem' }}>Transparency</h4>
+                        <p style={{ fontSize: '0.85rem', opacity: 0.7, lineHeight: 1.6 }}>
+                            Registered NGO in accordance with regional youth advocacy statutes. <br />
+                            Tax Exemption ID: [Placeholder for Reg #]
+                        </p>
                     </div>
                 </div>
                 <div style={{

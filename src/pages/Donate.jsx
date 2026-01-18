@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Globe, Trees, Users, CreditCard, DollarSign } from 'lucide-react';
+import { Heart, Globe, Trees, Users, CreditCard, DollarSign, Shield } from 'lucide-react';
 
 const Donate = () => {
     const [amount, setAmount] = useState('50');
@@ -174,6 +174,18 @@ const Donate = () => {
                                     <span><strong>Volunteer</strong>: Give your time to our local chapters.</span>
                                 </li>
                             </ul>
+                        </div>
+
+                        {/* Accountability block */}
+                        <div style={{ padding: '2rem', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 'var(--radius-lg)' }}>
+                            <h4 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <Shield size={20} color="var(--color-primary)" />
+                                Transparency & Accountability
+                            </h4>
+                            <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', lineHeight: 1.5 }}>
+                                YHCA is committed to 100% fiscal transparency. We publish annual impact and financial reports.
+                                <strong> 85% of all funds </strong> go directly to field programs, with only 15% allocated to administrative support.
+                            </p>
                         </div>
                     </motion.div>
                 </div>

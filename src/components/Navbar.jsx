@@ -72,6 +72,11 @@ const Navbar = () => {
                         color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
                     })}>About Us</NavLink>
 
+                    <NavLink to="/programs" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
+                        fontWeight: 600,
+                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
+                    })}>Programs</NavLink>
+
                     <NavLink to="/mission" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
                         fontWeight: 600,
                         color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
