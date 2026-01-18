@@ -72,9 +72,10 @@ const Programs = () => {
                     {programs.map((prog, i) => (
                         <motion.div
                             key={i}
-                            initial={{ x: i % 2 === 0 ? -50 : 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            viewport={{ once: true }}
+                            initial={{ y: 50, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             style={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
@@ -87,6 +88,7 @@ const Programs = () => {
                                 flexDirection: i % 2 === 0 ? 'row' : 'row-reverse'
                             }}
                         >
+
                             <div style={{ flex: 1, minWidth: '300px' }}>
                                 <div style={{
                                     display: 'inline-flex',

@@ -45,19 +45,19 @@ const images = [
     { id: 11, src: img11, title: "Seedling Distribution", category: "Action", description: "Empowering local communities to start their own reforestation projects." },
     { id: 12, src: img12, title: "Environmental Media Training", category: "Education", description: "Empowering youth to use digital storytelling for climate awareness." },
     // Expanded images
-    { id: 13, src: img13, title: "Tree Nursery Management", category: "Conservation", description: "Caring for thousands of indigenous seedlings prepared for the rainy season." },
-    { id: 14, src: img14, title: "Youth Leadership Retreat", category: "Education", description: "Deep-diving into environmental ethics and organizational leadership." },
-    { id: 15, src: img15, title: "Field Data Collection", category: "Conservation", description: "Youth volunteers measuring growth rates in our reforestation blocks." },
-    { id: 16, src: img16, title: "Local Chapter Launch", category: "Action", description: "Celebrating the establishment of a new YHCA chapter in the coastal region." },
-    { id: 17, src: img17, title: "Biodiversity Audit", category: "Conservation", description: "Documenting returning species in a restored mangrove ecosystem." },
-    { id: 18, src: img18, title: "School Outreach Program", category: "Education", description: "Engaging primary students through interactive climate puzzles and games." },
-    { id: 19, src: img19, title: "Digital Advocacy Hub", category: "Action", description: "Our tech-focused volunteers creating digital campaigns for widespread reach." },
-    { id: 20, src: img20, title: "Community Water Management", category: "Conservation", description: "Building sustainable rainwater harvesting systems in drought-prone areas." },
-    { id: 21, src: img21, title: "Eco-Innovation Showcase", category: "Education", description: "Showcasing student projects using recycled materials for clean energy." },
-    { id: 22, src: img22, title: "Coastal Protection Work", category: "Conservation", description: "Planting mangroves to protect coastal communities from rising sea levels." },
-    { id: 23, src: img23, title: "Policy Letter Writing", category: "Action", description: "Advocates drafting letters to the Ministry of Environment for better plastics laws." },
-    { id: 24, src: img24, title: "Composting Workshop", category: "Conservation", description: "Teaching urban communities how to turn organic waste into black gold." },
-    { id: 25, src: img25, title: "Solar Light Distribution", category: "Action", description: "Providing clean energy solutions to off-grid youth education centers." }
+    { id: 13, src: img13, title: "Indigenous Seedlings", category: "Conservation", description: "Thousands of indigenous tree species being nurtured for the next planting season." },
+    { id: 14, src: img14, title: "Advocacy Planning", category: "Education", description: "Young leaders mapping out regional climate policy objectives." },
+    { id: 15, src: img15, title: "Succession Monitoring", category: "Conservation", description: "Checking the survival rates of our newly established forest chapter sites." },
+    { id: 16, src: img16, title: "Coastal Ecosystems", category: "Action", description: "Launching a local mangrove restoration chapter along the Kenyan coast." },
+    { id: 17, src: img17, title: "Biodiversity Tracking", category: "Conservation", description: "Recording the return of native bird species to restored habitats." },
+    { id: 18, src: img18, title: "Climate Puzzles", category: "Education", description: "Interactive eco-learning tools used in our school outreach missions." },
+    { id: 19, src: img19, title: "Digital Campaigning", category: "Action", description: "Our tech-advocates launching a nationwide climate awareness social drive." },
+    { id: 20, src: img20, title: "Smart Water Solutions", category: "Conservation", description: "Demonstrating rainwater harvesting techniques to rural youth groups." },
+    { id: 21, src: img21, title: "Green Innovators", category: "Education", description: "Showcasing student-led innovations using recycled waste." },
+    { id: 22, src: img22, title: "Blue Carbon Site", category: "Conservation", description: "Planting mangroves to protect biodiversity and sequester carbon." },
+    { id: 23, src: img23, title: "Policy Dialogues", category: "Action", description: "Preparing formal petitions for environmental protection at the county level." },
+    { id: 24, src: img24, title: "Bio-Waste Conversion", category: "Conservation", description: "Hands-on training for converting market waste into high-quality compost." },
+    { id: 25, src: img25, title: "Eco-Energy Outreach", category: "Action", description: "Providing sustainable lighting solutions to off-grid community schools." }
 ];
 
 const Gallery = () => {
@@ -115,10 +115,22 @@ const Gallery = () => {
 
                 <motion.div
                     layout
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        show: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.05
+                            }
+                        }
+                    }}
                     style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(250px, 30vw, 350px), 1fr))',
-                        gap: '1rem',
+                        gap: '1.5rem',
                         minHeight: '400px'
                     }}
                 >
@@ -127,11 +139,11 @@ const Gallery = () => {
                             <motion.div
                                 layout
                                 key={img.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.4 }}
-                                whileHover={{ y: -5 }}
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0.9, y: 20 },
+                                    show: { opacity: 1, scale: 1, y: 0 }
+                                }}
+                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                                 style={{
                                     position: 'relative',
                                     aspectRatio: '4/3',

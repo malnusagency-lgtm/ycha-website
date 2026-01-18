@@ -30,21 +30,38 @@ const Home = () => {
             <motion.section
                 className="section"
                 style={{ backgroundColor: 'var(--color-white)' }}
-                {...fadeInUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.2 }}
             >
                 <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Why We Act</h2>
-                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-light)', marginBottom: '2rem' }}>
+                    <motion.h2
+                        variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
+                        style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}
+                    >
+                        Why We Act
+                    </motion.h2>
+                    <motion.p
+                        variants={{ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }}
+                        transition={{ delay: 0.2 }}
+                        style={{ fontSize: '1.1rem', color: 'var(--color-text-light)', marginBottom: '2rem' }}
+                    >
                         Climate change is the defining crisis of our time, disproportionately affecting communities across Africa.
                         We organize the energy of the youth into decentralized, high-impact regional actions that drive tangible change.
-                    </p>
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                        gap: '2rem',
-                        textAlign: 'left',
-                        marginTop: '3rem'
-                    }}>
+                    </motion.p>
+                    <motion.div
+                        variants={{
+                            initial: { opacity: 0 },
+                            animate: { opacity: 1, transition: { staggerChildren: 0.2 } }
+                        }}
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '2rem',
+                            textAlign: 'left',
+                            marginTop: '3rem'
+                        }}
+                    >
                         {[
                             { title: "Awareness", text: "Building climate literacy among 5,000+ students to foster a generation of sustainability-first thinkers." },
                             { title: "Action", text: "12,000+ indigenous trees planted and counting. Local action with a global impact footprint." },
@@ -52,6 +69,7 @@ const Home = () => {
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
+                                variants={{ initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 } }}
                                 className="card"
                                 whileHover={{ y: -10, boxShadow: 'var(--shadow-lg)' }}
                                 style={{
@@ -65,9 +83,10 @@ const Home = () => {
                                 <p>{item.text}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </motion.section>
+
 
             <ImpactCounter />
 

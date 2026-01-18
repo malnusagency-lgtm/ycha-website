@@ -84,10 +84,21 @@ const Donate = () => {
                         </div>
 
                         {/* Amount Selection */}
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0 },
+                                show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                            }}
+                            initial="hidden"
+                            animate="show"
+                            style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '2rem' }}
+                        >
                             {tiers.map((tier) => (
-                                <button
+                                <motion.button
                                     key={tier.value}
+                                    variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
                                     onClick={() => setAmount(tier.value)}
                                     style={{
                                         padding: '1.2rem',
@@ -105,9 +116,10 @@ const Donate = () => {
                                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: amount === tier.value ? 'var(--color-primary)' : 'var(--color-text)' }}>
                                         {tier.label}
                                     </span>
-                                </button>
+                                </motion.button>
                             ))}
-                        </div>
+                        </motion.div>
+
 
                         <div style={{ position: 'relative', marginBottom: '2.5rem' }}>
                             <span style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.6, fontWeight: 700 }}>KES</span>

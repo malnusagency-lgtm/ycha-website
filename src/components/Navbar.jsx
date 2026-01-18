@@ -36,21 +36,52 @@ const Navbar = () => {
             }}>
                 <motion.div
                     className="logo"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.02 }}
                 >
                     <Link to="/" style={{
-                        fontSize: '1.5rem',
-                        fontWeight: '800',
-                        color: 'var(--color-primary)',
+                        textDecoration: 'none',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem'
+                        gap: '0.8rem'
                     }}>
-                        <img src={logoImg} alt="YHCA Logo" style={{ height: scrolled ? '40px' : '50px', width: 'auto', transition: 'height 0.3s ease' }} />
-                        <span style={{ display: scrolled ? 'inline' : 'none', fontSize: '1.2rem', color: 'var(--color-primary)' }}>YHCA</span>
+                        <img
+                            src={logoImg}
+                            alt="Young Heroes Logo"
+                            style={{
+                                height: scrolled ? '50px' : '70px',
+                                width: 'auto',
+                                borderRadius: 'var(--radius-sm)',
+                                transition: 'height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                boxShadow: 'var(--shadow-sm)'
+                            }}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span style={{
+                                fontSize: scrolled ? '1.1rem' : '1.3rem',
+                                fontWeight: '800',
+                                color: 'var(--color-primary)',
+                                lineHeight: 1,
+                                transition: 'font-size 0.3s ease'
+                            }}>
+                                Young Heroes
+                            </span>
+                            <span style={{
+                                fontSize: scrolled ? '0.7rem' : '0.8rem',
+                                fontWeight: '600',
+                                color: 'var(--color-primary)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px',
+                                opacity: 0.8,
+                                transition: 'font-size 0.3s ease'
+                            }}>
+                                Climate Advocates
+                            </span>
+                        </div>
                     </Link>
                 </motion.div>
+
 
                 {/* Mobile Toggle */}
                 <div className="mobile-toggle" onClick={toggleMenu} style={{ display: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}>
