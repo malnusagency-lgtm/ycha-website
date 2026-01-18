@@ -1,11 +1,15 @@
 :root {
   /* Color Palette */
-  --color-primary: #0F4C3A; /* Deep Forest Green */
+  --color-primary: #0F4C3A;
+  /* Deep Forest Green */
   --color-primary-light: #1A6B54;
-  --color-secondary: #2E86AB; /* Ocean Blue */
-  --color-accent: #F4D35E; /* Sunlight Yellow */
-  --color-alert: #E63946; /* Urgency Red */
-  
+  --color-secondary: #2E86AB;
+  /* Ocean Blue */
+  --color-accent: #F4D35E;
+  /* Sunlight Yellow */
+  --color-alert: #E63946;
+  /* Urgency Red */
+
   --color-bg: #F7F9F9;
   --color-text: #2D3142;
   --color-text-light: #4F5D75;
@@ -26,10 +30,10 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -49,7 +53,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
@@ -75,19 +84,24 @@ button {
 
 /* Utilities */
 .container {
-  width: 90%;
+  width: 92%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
 }
 
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.7rem;
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  transition: all var(--transition-normal);
+  text-align: center;
 }
 
 .btn-primary {
@@ -113,5 +127,28 @@ button {
 }
 
 .section {
-  padding: var(--spacing-lg) 0;
+  padding: clamp(3rem, 10vw, 6rem) 0;
+}
+
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Performance: Smoother transitions */
+* {
+  transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -41,12 +41,13 @@ const Programs = () => {
     return (
         <motion.div
             className="programs-page"
-            style={{ paddingTop: '100px', backgroundColor: '#f9fafb', minHeight: '100vh' }}
+            style={{ paddingTop: 'clamp(80px, 15vh, 120px)', backgroundColor: '#f9fafb', minHeight: '100vh' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <div className="container" style={{ padding: '4rem 2rem' }}>
+            <div className="container" style={{ padding: 'clamp(2rem, 5vw, 4rem) 1rem' }}>
+
                 <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                     <motion.span
                         initial={{ opacity: 0 }}
@@ -77,10 +78,10 @@ const Programs = () => {
                             style={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
-                                gap: '3rem',
+                                gap: 'clamp(1rem, 5vw, 3rem)',
                                 alignItems: 'center',
                                 backgroundColor: 'white',
-                                padding: '3rem',
+                                padding: 'clamp(1.5rem, 5vw, 3rem)',
                                 borderRadius: 'var(--radius-lg)',
                                 boxShadow: 'var(--shadow-md)',
                                 flexDirection: i % 2 === 0 ? 'row' : 'row-reverse'

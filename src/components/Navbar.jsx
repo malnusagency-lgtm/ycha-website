@@ -98,28 +98,42 @@ const Navbar = () => {
                 </div>
             </div>
             <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
           .nav-links {
             display: none !important;
             flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem 1rem;
-            box-shadow: var(--shadow-md);
-            text-align: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%;
+            height: 100vh;
+            background: white;
+            padding: 6rem 2rem;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            text-align: left;
+            z-index: 2000;
           }
           .nav-links.active {
             display: flex !important;
-            gap: 1.5rem;
+            gap: 2rem;
           }
           .mobile-toggle {
             display: block !important;
+            z-index: 2001;
+          }
+          .nav-links a {
+            font-size: 1.5rem;
+            width: 100%;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+          }
+          .nav-links .btn {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            justify-content: center;
           }
         }
+
       `}</style>
         </nav>
     );

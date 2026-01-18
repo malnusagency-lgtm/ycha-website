@@ -6,12 +6,13 @@ const About = () => {
     return (
         <motion.div
             className="about-page"
-            style={{ paddingTop: '80px' }}
+            style={{ paddingTop: 'clamp(80px, 15vh, 120px)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
         >
-            <div className="container" style={{ padding: '4rem 0' }}>
+            <div className="container" style={{ padding: 'clamp(2rem, 5vw, 6rem) 1rem' }}>
+
                 <motion.h1
                     style={{ textAlign: 'center', marginBottom: '4rem', fontSize: '3rem' }}
                     initial={{ y: -20 }}
