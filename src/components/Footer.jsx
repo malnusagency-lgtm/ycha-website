@@ -1,4 +1,5 @@
 import React from 'react';
+import { Globe, Users } from 'lucide-react';
 
 const Footer = () => {
     return (
