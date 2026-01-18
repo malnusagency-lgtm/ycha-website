@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Mission from './pages/Mission';
 import Join from './pages/Join';
-import CustomCursor from './components/CustomCursor';
+import Donate from './pages/Donate';
 import './App.css';
 
 const ScrollToTop = () => {
@@ -38,7 +38,6 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <CustomCursor />
       <GrainOverlay />
       <div className="app-wrapper">
         <Navbar />
@@ -49,6 +48,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/mission" element={<Mission />} />
               <Route path="/join" element={<Join />} />
+              <Route path="/donate" element={<Donate />} />
             </Routes>
           </AnimatePresence>
         </main>

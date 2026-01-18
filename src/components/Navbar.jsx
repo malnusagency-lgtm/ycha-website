@@ -48,7 +48,7 @@ const Navbar = () => {
                         gap: '0.5rem'
                     }}>
                         <img src={logoImg} alt="YHCA Logo" style={{ height: scrolled ? '40px' : '50px', width: 'auto', transition: 'height 0.3s ease' }} />
-                        <span style={{ display: 'none' }}>YHCA</span>
+                        <span style={{ display: scrolled ? 'inline' : 'none', fontSize: '1.2rem', color: 'var(--color-primary)' }}>YHCA</span>
                     </Link>
                 </motion.div>
 
@@ -57,42 +57,42 @@ const Navbar = () => {
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </div>
 
-                <ul className={`nav-links ${isOpen ? 'active' : ''}`} style={{
+                <div className={`nav-links ${isOpen ? 'active' : ''}`} style={{
                     display: 'flex',
-                    listStyle: 'none',
                     gap: '2rem',
                     alignItems: 'center'
                 }}>
-                    <li>
-                        <NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : ''} style={{ fontWeight: 600 }}>Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about" className={({ isActive }) => isActive ? 'active-link' : ''} style={{ fontWeight: 600 }}>About Us</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/mission" className={({ isActive }) => isActive ? 'active-link' : ''} style={{ fontWeight: 600 }}>Our Mission</NavLink>
-                    </li>
-                    <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Link to="/join" className="btn btn-primary" style={{ padding: '0.6rem 1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <NavLink to="/" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
+                        fontWeight: 600,
+                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
+                    })}>Home</NavLink>
+
+                    <NavLink to="/about" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
+                        fontWeight: 600,
+                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
+                    })}>About Us</NavLink>
+
+                    <NavLink to="/mission" onClick={() => setIsOpen(false)} style={({ isActive }) => ({
+                        fontWeight: 600,
+                        color: isActive ? 'var(--color-accent)' : 'var(--color-text)'
+                    })}>Our Mission</NavLink>
+
+                    <Link to="/donate" onClick={() => setIsOpen(false)} style={{
+                        color: 'var(--color-accent)',
+                        fontWeight: 700,
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        padding: '0.4rem 1rem',
+                        borderRadius: '2rem'
+                    }}>Donate</Link>
+
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Link to="/join" className="btn btn-primary" onClick={() => setIsOpen(false)} style={{ padding: '0.6rem 1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             Join Now
                         </Link>
-                    </motion.li>
-                </ul>
+                    </motion.div>
+                </div>
             </div>
             <style>{`
-        .active-link {
-          color: var(--color-primary);
-          position: relative;
-        }
-        .active-link::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background: var(--color-accent);
-        }
         @media (max-width: 768px) {
           .nav-links {
             display: none !important;
@@ -119,6 +119,5 @@ const Navbar = () => {
         </nav>
     );
 };
-
 
 export default Navbar;

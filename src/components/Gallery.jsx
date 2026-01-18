@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Image imports (Vite friendly)
+// Image imports
 import img1 from '../assets/gallery/WhatsApp Image 2026-01-13 at 8.13.24 PM.jpeg';
 import img2 from '../assets/gallery/WhatsApp Image 2026-01-13 at 8.16.14 PM.jpeg';
 import img3 from '../assets/gallery/WhatsApp Image 2026-01-13 at 8.22.35 PM.jpeg';
@@ -17,18 +17,18 @@ import img11 from '../assets/gallery/WhatsApp Image 2026-01-14 at 1.05.56 AM.jpe
 import img12 from '../assets/gallery/WhatsApp Image 2026-01-14 at 1.07.18 AM.jpeg';
 
 const images = [
-    { id: 1, src: img1, title: "Our Community", category: "Action" },
-    { id: 2, src: img2, title: "Future Leaders", category: "Education" },
-    { id: 3, src: img3, title: "Clean Earth Initiative", category: "Conservation" },
-    { id: 4, src: img4, title: "Climate Summit", category: "Advocacy" },
-    { id: 5, src: img5, title: "Youth Voices", category: "Action" },
-    { id: 6, src: img6, title: "Eco-Education", category: "Education" },
-    { id: 7, src: img7, title: "Sustainable Farming", category: "Conservation" },
-    { id: 8, src: img8, title: "Tree Planting Day", category: "Action" },
-    { id: 9, src: img9, title: "Ocean Cleanup", category: "Action" },
-    { id: 10, src: img10, title: "Policy Workshop", category: "Advocacy" },
-    { id: 11, src: img11, title: "Urban Garden", category: "Conservation" },
-    { id: 12, src: img12, title: "Advocates Rally", category: "Action" },
+    { id: 1, src: img1, title: "Training Future Advocates", category: "Education", description: "Young leaders participating in a regional climate advocacy workshop." },
+    { id: 2, src: img2, title: "Reforestation Initiative", category: "Conservation", description: "Volunteers working on restoring local forest cover to combat soil erosion." },
+    { id: 3, src: img3, title: "Community Beach Cleanup", category: "Action", description: "A massive youth-led effort to remove plastic waste from our shores." },
+    { id: 4, src: img4, title: "Eco-Literacy Seminar", category: "Education", description: "Educating students about the direct impact of climate change on local ecosystems." },
+    { id: 5, src: img5, title: "Strategic Planning Session", category: "Action", description: "Core team members outlining our strategy for the upcoming year." },
+    { id: 6, src: img6, title: "Sustainable Agriculture", category: "Conservation", description: "Implementing urban gardening practices to promote food security." },
+    { id: 7, src: img7, title: "Climate Action Rally", category: "Action", description: "Young heroes demanding stronger environmental policies during a peaceful protest." },
+    { id: 8, src: img8, title: "Waste Management Workshop", category: "Education", description: "Teaching the 3Rs (Reduce, Reuse, Recycle) to elementary students." },
+    { id: 9, src: img9, title: "Habitat Restoration", category: "Conservation", description: "Working to preserve the natural habitats of endangered local species." },
+    { id: 10, src: img10, title: "Advocacy Summit", category: "Action", description: "Bringing together youth leaders to discuss climate policy at a national level." },
+    { id: 11, src: img11, title: "Seedling Distribution", category: "Action", description: "Empowering local communities to start their own reforestation projects." },
+    { id: 12, src: img12, title: "Environmental Media Training", category: "Education", description: "Empowering youth to use digital storytelling for climate awareness." },
 ];
 
 const Gallery = () => {
@@ -50,14 +50,14 @@ const Gallery = () => {
                         whileInView={{ opacity: 1 }}
                         style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem' }}
                     >
-                        Visual Journey
+                        Our Impact in Pictures
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         style={{ fontSize: '3rem', marginTop: '1rem' }}
                     >
-                        Our Heroes in Action
+                        The Hero Gallery
                     </motion.h2>
 
                     {/* Filters */}
@@ -73,7 +73,8 @@ const Gallery = () => {
                                     backgroundColor: filter === cat ? 'var(--color-primary)' : 'transparent',
                                     color: filter === cat ? 'white' : 'var(--color-text)',
                                     fontWeight: 600,
-                                    transition: 'all 0.3s ease'
+                                    transition: 'all 0.3s ease',
+                                    cursor: 'pointer'
                                 }}
                             >
                                 {cat}
@@ -132,10 +133,13 @@ const Gallery = () => {
                                         color: 'white'
                                     }}
                                 >
-                                    <div>
-                                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.8 }}>{img.category}</span>
-                                        <h4 style={{ color: 'white', margin: '0.2rem 0' }}>{img.title}</h4>
-                                        <Maximize2 size={16} />
+                                    <div style={{ width: '100%' }}>
+                                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.8, color: 'white' }}>{img.category}</span>
+                                        <h4 style={{ color: 'white', margin: '0.2rem 0', fontSize: '1.1rem' }}>{img.title}</h4>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ fontSize: '0.8rem', opacity: 0.8, color: 'white' }}>View Details</span>
+                                            <Maximize2 size={16} color="white" />
+                                        </div>
                                     </div>
                                 </motion.div>
                             </motion.div>
@@ -167,7 +171,7 @@ const Gallery = () => {
                         onClick={closeLightbox}
                     >
                         <button
-                            style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'none', color: 'white' }}
+                            style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
                             onClick={closeLightbox}
                         >
                             <X size={40} />
@@ -177,16 +181,17 @@ const Gallery = () => {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
-                            style={{ maxWidth: '90%', maxHeight: '80%', position: 'relative' }}
+                            style={{ maxWidth: '900px', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                         >
                             <img
                                 src={selectedImg.src}
                                 alt={selectedImg.title}
-                                style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-md)' }}
+                                style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-md)', maxHeight: '70vh', objectFit: 'contain' }}
                             />
-                            <div style={{ color: 'white', marginTop: '1rem', textAlign: 'center' }}>
-                                <h3>{selectedImg.title}</h3>
-                                <p style={{ opacity: 0.7 }}>{selectedImg.category}</p>
+                            <div style={{ color: 'white', marginTop: '2rem', textAlign: 'center', maxWidth: '600px' }}>
+                                <span style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700, fontSize: '0.9rem' }}>{selectedImg.category}</span>
+                                <h3 style={{ fontSize: '2rem', marginTop: '0.5rem', color: 'white' }}>{selectedImg.title}</h3>
+                                <p style={{ opacity: 0.8, marginTop: '1rem', lineHeight: 1.6, fontSize: '1.1rem' }}>{selectedImg.description}</p>
                             </div>
                         </motion.div>
                     </motion.div>
