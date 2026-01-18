@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import ImpactCounter from '../components/ImpactCounter';
+import Gallery from '../components/Gallery';
 
 const Home = () => {
     const fadeInUp = {
@@ -28,7 +29,7 @@ const Home = () => {
                     </p>
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
                         gap: '2rem',
                         textAlign: 'left',
                         marginTop: '3rem'
@@ -58,6 +59,7 @@ const Home = () => {
             </motion.section>
 
             <ImpactCounter />
+            <Gallery />
 
             <motion.section
                 className="section"
