@@ -61,7 +61,7 @@ const Blog = () => {
             <div className="container" style={{ padding: '0 1rem 6rem' }}>
 
                 {/* Header */}
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                <div className="section-header">
                     <motion.span
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -82,24 +82,34 @@ const Blog = () => {
                 {/* Filters & Search */}
                 <div style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    flexDirection: 'column',
                     gap: '2rem',
                     marginBottom: '4rem',
-                    flexWrap: 'wrap'
+                    alignItems: 'center'
                 }}>
-                    <div style={{ display: 'flex', gap: '0.8rem', overflowX: 'auto', paddingBottom: '0.5rem', whiteSpace: 'nowrap' }}>
+                    <div
+                        className="hide-scrollbar"
+                        style={{
+                            display: 'flex',
+                            gap: '0.6rem',
+                            overflowX: 'auto',
+                            paddingBottom: '0.5rem',
+                            whiteSpace: 'nowrap',
+                            width: '100%',
+                            justifyContent: 'flex-start'
+                        }}
+                    >
                         {categories.map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
                                 style={{
-                                    padding: '0.6rem 1.5rem',
+                                    padding: '0.6rem 1.2rem',
                                     borderRadius: '2rem',
                                     border: 'none',
                                     cursor: 'pointer',
                                     fontWeight: 700,
-                                    fontSize: '0.9rem',
+                                    fontSize: '0.85rem',
                                     backgroundColor: activeCategory === cat ? 'var(--color-primary)' : 'white',
                                     color: activeCategory === cat ? 'white' : 'var(--color-text-light)',
                                     boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
@@ -111,8 +121,8 @@ const Blog = () => {
                         ))}
                     </div>
 
-                    <div style={{ position: 'relative', flex: 1, maxWidth: '400px', minWidth: '280px' }}>
-                        <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} size={20} />
+                    <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
+                        <Search style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} size={18} />
                         <input
                             type="text"
                             placeholder="Search articles..."
@@ -120,12 +130,12 @@ const Blog = () => {
                             onChange={(e) => setSearchQuery(e.target.value)}
                             style={{
                                 width: '100%',
-                                padding: '1rem 1rem 1rem 3rem',
-                                borderRadius: '2rem',
+                                padding: '1.1rem 1rem 1.1rem 3.5rem',
+                                borderRadius: '3rem',
                                 border: '1px solid #e2e8f0',
                                 background: 'white',
-                                fontSize: '0.9rem',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
+                                fontSize: '0.95rem',
+                                boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
                             }}
                         />
                     </div>
@@ -177,13 +187,13 @@ const Blog = () => {
                                         {art.category}
                                     </div>
                                 </div>
-                                <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1rem' }}>
+                                <div style={{ padding: 'clamp(1.5rem, 5vw, 2.5rem)', flex: 1, display: 'flex', flexDirection: 'column' }} className="mobile-center">
+                                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1rem', justifyContent: 'inherit' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><User size={14} /> {art.author}</div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><Clock size={14} /> {art.readTime}</div>
                                     </div>
-                                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.3 }}>{art.title}</h3>
-                                    <p style={{ color: 'var(--color-text-light)', fontSize: '0.95rem', marginBottom: '2rem', lineHeight: 1.7 }}>{art.excerpt}</p>
+                                    <h3 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.5rem)', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.3 }}>{art.title}</h3>
+                                    <p style={{ color: 'var(--color-text-light)', fontSize: '1rem', marginBottom: '2rem', lineHeight: 1.7 }}>{art.excerpt}</p>
                                     <button style={{
                                         marginTop: 'auto',
                                         display: 'flex',
@@ -194,7 +204,8 @@ const Blog = () => {
                                         background: 'none',
                                         border: 'none',
                                         padding: 0,
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        justifyContent: 'inherit'
                                     }}>
                                         Read More <ChevronRight size={18} />
                                     </button>
@@ -210,6 +221,21 @@ const Blog = () => {
                     </div>
                 )}
             </div>
+            <style>{`
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .hide-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+                @media (max-width: 768px) {
+                    .hide-scrollbar {
+                        justify-content: flex-start !important;
+                        padding-left: 0.5rem;
+                    }
+                }
+            `}</style>
         </motion.div>
     );
 };

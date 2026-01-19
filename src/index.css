@@ -89,14 +89,34 @@ button {
 
 /* Utilities */
 .container {
-  width: 92%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem;
+  /* Standard mobile-first gutter */
 }
 
 @media (min-width: 768px) {
   .container {
     width: 90%;
+    padding: 0;
+  }
+}
+
+/* Mobile Alignment Helpers */
+@media (max-width: 768px) {
+  .mobile-center {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
   }
 }
 
@@ -107,6 +127,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
