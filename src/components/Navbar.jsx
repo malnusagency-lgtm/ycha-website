@@ -137,6 +137,7 @@ const Navbar = () => {
             padding: 7rem 2rem;
             z-index: 2000;
             text-align: center;
+            overflow-y: auto;
           }
           .nav-links.active {
             display: flex !important;

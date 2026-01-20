@@ -57,7 +57,7 @@ const Footer = () => {
                         <ul style={{ listStyle: 'none', padding: 0 }}>
                             <li style={{ marginBottom: '1.2rem', opacity: 0.9, display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                                 <MapPin size={20} color="var(--color-accent)" style={{ flexShrink: 0 }} />
-                                <span style={{ fontSize: '0.9rem' }}>Regional Youth Hub, <br />Nairobi, Kenya</span>
+                                <span style={{ fontSize: '0.9rem' }}>Regional Youth Hub, <br />Kitengela, Kajiado County</span>
                             </li>
                             <li style={{ marginBottom: '1.2rem', opacity: 0.9, display: 'flex', gap: '1rem', alignItems: 'center' }}>
                                 <Mail size={20} color="var(--color-accent)" style={{ flexShrink: 0 }} />
